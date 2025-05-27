@@ -12,6 +12,12 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
         <div class="research-item-content">
           <h2>{{ item.title }}</h2>
           <p class="author">By {{ item.author.name }}</p>
+          <p class="publication" *ngIf="item.published_in?.length">
+            in:
+            <span *ngFor="let pub of item.published_in; let last = last">
+              {{ pub.name }}{{ !last ? ', ' : '' }}
+            </span>
+          </p>
           <p class="abstract">{{ item.abstract }}</p>
           <div class="keywords" *ngIf="item.keywords.length">
             <span *ngFor="let keyword of item.keywords" class="keyword">
@@ -55,6 +61,11 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
     }
 
     .author {
+      color: #666;
+      font-style: italic;
+    }
+
+    .publication {
       color: #666;
       font-style: italic;
     }

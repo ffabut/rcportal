@@ -8,7 +8,7 @@ import { ResearchListComponent } from '../../components/research-list/research-l
   imports: [CommonModule, ResearchListComponent],
   template: `
     <div class="home">
-      <h1>Research Catalogue</h1>
+      <h1>FFA Art Research Portal</h1>
       <app-research-list></app-research-list>
     </div>
   `,

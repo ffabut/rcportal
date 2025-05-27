@@ -24,7 +24,7 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
               {{ keyword }}
             </span>
           </div>
-          <a [href]="item.default_page" target="_blank" class="read-more">Read more</a>
+          <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
         </div>
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
       </div>

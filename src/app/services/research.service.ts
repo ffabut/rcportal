@@ -8,7 +8,7 @@ export interface ResearchItem {
   type: string;
   title: string;
   thumb: string;
-  default_page: string;
+  'default-page': string;
   keywords: string[];
   created: string;
   last_modified: number;

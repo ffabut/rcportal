@@ -45,7 +45,8 @@ export class ResearchService {
     const params = {
       resulttype: 'research',
       format: 'json',
-      limit: '2500',
+      limit: '10',
+      portal: '13', // for now 13=Sonic Studies, later 2535275=FFA BUT
       page: '0'
     };
 

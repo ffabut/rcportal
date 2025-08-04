@@ -23,18 +23,25 @@ import { ResearchListComponent } from '../../components/research-list/research-l
   <img src="FFA_abbreviation_black_white_EN.png" alt="FFA Logo">
 </div>
 
-<div class="home">
-  <h1>FFA Art Research Portal</h1>
-  <app-research-list></app-research-list>
-</div>
-  `,
+<app-research-list></app-research-list>
+
+<footer>
+  <img src="FFA_logo_black_white_EN.png" alt="FFA Logo">
+  <span>About this portal</span>
+  <span>Contact person: Lenka Veselá</span>
+</footer>
+`,
   styles: [`
     .home {
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
     }
-
+    #logos {
+      display: flex;
+      height: 10vh;
+      justify-content: left;
+    }
     h1 {
       text-align: center;
       margin-bottom: 2rem;

@@ -9,7 +9,8 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
   template: `
     <div class="research-list">
       <div *ngFor="let item of researchItems" class="research-item">
-        <div class="research-item-content">
+        
+          <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
           <h2>{{ item.title }}</h2>
           <p class="author">By {{ item.author.name }}</p>
           <p class="publication" *ngIf="item.published_in?.length">
@@ -20,38 +21,31 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
           </p>
           <p class="abstract">{{ item.abstract }}</p>
           <div class="keywords" *ngIf="item.keywords.length">
+            Keywords:
             <span *ngFor="let keyword of item.keywords" class="keyword">
               {{ keyword }}
             </span>
           </div>
           <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
-        </div>
-        <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
+
       </div>
     </div>
   `,
   styles: [`
     .research-list {
-      display: grid;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       gap: 2rem;
       padding: 2rem;
     }
 
     .research-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      padding: 1.5rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .research-item-content {
+      width: 22vw;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      align-items: stretch;
+      border: 1px solid #000000;
     }
 
     h2 {
@@ -104,8 +98,7 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
     }
 
     .thumbnail {
-      width: 200px;
-      height: 200px;
+      width: 100%;
       object-fit: cover;
       border-radius: 4px;
     }

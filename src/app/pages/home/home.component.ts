@@ -30,25 +30,5 @@ import { ResearchListComponent } from '../../components/research-list/research-l
   <span>About this portal</span>
   <span>Contact person: Lenka Veselá</span>
 </footer>
-`,
-  styles: [`
-    header {
-      display: flex;
-      flex-direction: row;
-      justify-content: left;
-      gap: 2rem;
-      padding: 0.4rem 0.3rem 0.4rem 0.3rem;
-    }
-    #logos {
-      display: flex;
-      height: 10vh;
-      justify-content: left;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #333;
-    }
-  `]
-})
+`})
 export class HomeComponent {} 

@@ -17,15 +17,19 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
     <div class="research-list">
       <div *ngFor="let item of researchItems" class="research-item">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
-        <h2>{{ item.title }}</h2>
-        <p class="author">By {{ item.author.name }}</p>
-        <p class="publication" *ngIf="item.published_in?.length">
-          in:
+        <h3>
+          <span class="author">{{ item.author.name }}</span> <br/>
+          <span>{{ item.title }}</span>
+        </h3>
+        
+        <p class="where" *ngIf="item.published_in?.length">
           <span *ngFor="let pub of item.published_in; let last = last">
             {{ pub.name }}{{ !last ? ', ' : '' }}
           </span>
         </p>
+
         <p class="abstract">{{ item.abstract }}</p>
+        
         <div class="keywords" *ngIf="item.keywords.length">
           Keywords:
           <span *ngFor="let keyword of item.keywords" class="keyword">

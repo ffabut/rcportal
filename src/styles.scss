@@ -16,6 +16,13 @@ a:visited {
   color: #000000;
 }
 
+h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
 // GENERAL
 header {
   display: flex;
@@ -65,25 +72,14 @@ footer {
   background-color: aliceblue;
 }
 
-h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+h3{
+  font-size: unset;
+  font-weight: unset;
+  margin: 1rem 0 0.5rem 0;
 }
 
-.author {
-  color: #666;
-  font-style: italic;
-}
-
-.publication {
-  color: #666;
-  font-style: italic;
-}
-
-.abstract {
-  color: #444;
-  line-height: 1.6;
+.research-list p {
+  margin: 0.5rem 0;
 }
 
 .keywords {

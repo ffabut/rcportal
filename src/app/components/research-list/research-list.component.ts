@@ -15,7 +15,7 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
   <div class="ffa-expositions">
     <h2>FFA Research in Art and Design</h2>
     <div class="research-list">
-      <div *ngFor="let item of researchItems" class="research-item">
+      <div *ngFor="let item of researchItems" class="research-item" (click)="openInNewTab(item['default-page'])">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
         <div class="details">
           <h3>
@@ -72,5 +72,9 @@ export class ResearchListComponent implements OnInit {
         console.error('Error fetching research items:', error);
       }
     });
+  }
+
+  openInNewTab(url: string): void {
+    window.open(url, '_blank', 'noopener');
   }
 } 

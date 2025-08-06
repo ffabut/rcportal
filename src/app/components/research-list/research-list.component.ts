@@ -17,26 +17,31 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
     <div class="research-list">
       <div *ngFor="let item of researchItems" class="research-item">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
-        <h3>
-          <span class="author">{{ item.author.name }}</span> <br/>
-          <span>{{ item.title }}</span>
-        </h3>
-        
-        <p class="where" *ngIf="item.published_in?.length">
-          <span *ngFor="let pub of item.published_in; let last = last">
-            {{ pub.name }}{{ !last ? ', ' : '' }}
-          </span>
-        </p>
+        <div class="details">
+          <h3>
+            <span class="author">{{ item.author.name }}</span> <br/>
+            <span>{{ item.title }}</span>
+          </h3>
+          
+          <p class="where" *ngIf="item.published_in?.length">
+            <span *ngFor="let pub of item.published_in; let last = last">
+              {{ pub.name }}{{ !last ? ', ' : '' }}
+            </span>
+          </p>
 
-        <p class="abstract">{{ item.abstract }}</p>
-        
-        <div class="keywords" *ngIf="item.keywords.length">
-          Keywords:
-          <span *ngFor="let keyword of item.keywords" class="keyword">
-            {{ keyword }}
-          </span>
+          <p class="abstract">{{ item.abstract }}</p>
         </div>
-        <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
+
+        <!-- Probably unused
+        <div class="bottom">
+          <div class="keywords" *ngIf="item.keywords.length">
+            <span *ngFor="let keyword of item.keywords" class="keyword">
+              {{ keyword }}
+            </span>
+          </div>
+          <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
+        </div>
+        -->
       </div>
     </div>
   </div>

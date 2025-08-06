@@ -69,7 +69,16 @@ footer {
   width: 22vw;
   display: flex;
   flex-direction: column;
-  background-color: aliceblue;
+}
+
+.research-item .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.research-item .bottom {
+  margin-top: auto;
 }
 
 h3{

@@ -4,6 +4,16 @@ Project for the FFA Art Research Portal showing the research items from the rese
 
 Aims to be a simple, static & lightweight portal for the FFA Art Research Catalogue.
 
+## Deploy files
+```
+sftp -i ~/.ssh/portal-favu-vut-cz-gajdosik web-portal@vampire.ffa.vutbr.cz
+lcd dist/ffa-portal/browser
+cd public_html
+rm *
+put -r *
+```
+
+
 ## Development
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.

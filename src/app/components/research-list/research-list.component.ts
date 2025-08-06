@@ -8,11 +8,14 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
   imports: [CommonModule],
   template: `
 <div class="app-research-list">
-  <h2>Published in RC Journals</h2>
-  <h2>FFA Research in Art and Design</h2>
-  <div class="research-list">
-    <div *ngFor="let item of researchItems" class="research-item">
-      
+  <div class="rc-expositions">
+    <h2>Published in RC Journals</h2>
+  </div>
+
+  <div class="ffa-expositions">
+    <h2>FFA Research in Art and Design</h2>
+    <div class="research-list">
+      <div *ngFor="let item of researchItems" class="research-item">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
         <h2>{{ item.title }}</h2>
         <p class="author">By {{ item.author.name }}</p>
@@ -30,14 +33,20 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
           </span>
         </div>
         <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
-
+      </div>
     </div>
   </div>
 
-  <h2>Projects Current</h2>
-  <h2>Projects Previous</h2>
+  <div class="projects-current">
+    <h2>Projects Current</h2>
+  </div>
+  
+  <div class="projects-previous">
+    <h2>Projects Previous</h2>
+  </div>
+
 </div>
-  `
+`
 })
 
 export class ResearchListComponent implements OnInit {

@@ -34,11 +34,6 @@ header {
   border-bottom: 3px solid #000000;
 }
 
-.app-research-list{
-  padding: 1rem 0;
-  border-bottom: 3px solid #000000;
-}
-
 footer {
   display: flex;
   flex-direction: row;
@@ -48,6 +43,14 @@ footer {
 
 
 // RESEARCH LIST
+.rc-expositions,
+.ffa-expositions,
+.projects-current,
+.projects-previous {
+  padding: 1rem 0;
+  border-bottom: 3px solid #000000;
+}
+
 .research-list {
   display: flex;
   flex-direction: row;

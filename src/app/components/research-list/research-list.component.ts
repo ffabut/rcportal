@@ -7,30 +7,39 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="research-list">
-      <div *ngFor="let item of researchItems" class="research-item">
-        
-          <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
-          <h2>{{ item.title }}</h2>
-          <p class="author">By {{ item.author.name }}</p>
-          <p class="publication" *ngIf="item.published_in?.length">
-            in:
-            <span *ngFor="let pub of item.published_in; let last = last">
-              {{ pub.name }}{{ !last ? ', ' : '' }}
-            </span>
-          </p>
-          <p class="abstract">{{ item.abstract }}</p>
-          <div class="keywords" *ngIf="item.keywords.length">
-            Keywords:
-            <span *ngFor="let keyword of item.keywords" class="keyword">
-              {{ keyword }}
-            </span>
-          </div>
-          <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
+<div class="app-research-list">
+  <h2>Published in RC Journals</h2>
+  <h2>FFA Research in Art and Design</h2>
+  <div class="research-list">
+    <div *ngFor="let item of researchItems" class="research-item">
+      
+        <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
+        <h2>{{ item.title }}</h2>
+        <p class="author">By {{ item.author.name }}</p>
+        <p class="publication" *ngIf="item.published_in?.length">
+          in:
+          <span *ngFor="let pub of item.published_in; let last = last">
+            {{ pub.name }}{{ !last ? ', ' : '' }}
+          </span>
+        </p>
+        <p class="abstract">{{ item.abstract }}</p>
+        <div class="keywords" *ngIf="item.keywords.length">
+          Keywords:
+          <span *ngFor="let keyword of item.keywords" class="keyword">
+            {{ keyword }}
+          </span>
+        </div>
+        <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
 
-      </div>
     </div>
-  `})
+  </div>
+
+  <h2>Projects Current</h2>
+  <h2>Projects Previous</h2>
+</div>
+  `
+})
+
 export class ResearchListComponent implements OnInit {
   researchItems: ResearchItem[] = [];
 

@@ -36,7 +36,7 @@ export interface ResearchItem {
   providedIn: 'root'
 })
 export class ResearchService {
-  private apiUrl = `${environment.apiBaseUrl}/portal/search-result`;
+  private apiUrl = `https://www.researchcatalogue.net/portal/search-result`;
 
   constructor(private http: HttpClient) { }
 

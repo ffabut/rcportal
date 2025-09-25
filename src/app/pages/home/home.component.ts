@@ -19,7 +19,7 @@ import { ResearchListComponent } from '../../components/research-list/research-l
 </header>
 
 <div class="logos">
-  <img src="FaVU_zkratka_cernobile_CZ.png" alt="FFA Logo">
+  <img src="FFA_black_white_EN.png" alt="FFA Logo">
   <img src="FFA_abbreviation_black_white_EN.png" alt="FFA Logo">
 </div>
 

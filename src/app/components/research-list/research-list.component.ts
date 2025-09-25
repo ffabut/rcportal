@@ -14,6 +14,7 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
 
   <div class="ffa-expositions">
     <h2>FFA Research in Art and Design</h2>
+    <div class="subtitle">ISSN: 1234-5678</div>
     <div class="research-list">
       <div *ngFor="let item of researchItems" class="research-item" (click)="openInNewTab(item['default-page'])">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">

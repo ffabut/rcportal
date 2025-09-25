@@ -69,6 +69,7 @@ header a:visited {
 footer {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 2rem;
   padding: 1rem 0;
 }
@@ -76,7 +77,16 @@ footer .small {
   height: 3rem;
   border-bottom: unset;
 }
-
+footer .contact {
+  margin-bottom: 1rem; 
+  display: flex;
+  color: $grey;
+  gap: 4rem;
+  align-items: end;
+}
+footer .contact a, footer .contact a:visited {
+  color: $grey;
+}
 
 // RESEARCH LIST
 .rc-expositions,

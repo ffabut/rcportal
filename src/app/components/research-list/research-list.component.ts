@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResearchService, ResearchItem } from '../../services/research.service';
+//import { TruncatePipe } from './truncate.pipe';
+import { TruncateSentencesPipe } from './truncate-sentences.pipe';
 
 @Component({
   selector: 'app-research-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TruncateSentencesPipe],
   template: `
 <div class="app-research-list">
   <div class="rc-expositions">
@@ -34,7 +36,9 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
             </span>
           </p>
 
-          <p class="abstract">{{ item.abstract }}</p>
+          <p class="abstract">
+            {{ item.abstract | truncateSentences:500:' […]' }}
+          </p>
         </div>
 
         <!-- Probably unused

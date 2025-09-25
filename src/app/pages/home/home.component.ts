@@ -26,7 +26,10 @@ import { ResearchListComponent } from '../../components/research-list/research-l
 <app-research-list></app-research-list>
 
 <footer>
-  <img src="FFA_logo_black_white_EN.png" alt="FFA Logo">
+  <div class="logos small">
+    <img src="FFA_black_white_EN.png" alt="FFA Logo">
+    <img src="FFA_abbreviation_black_white_EN.png" alt="FFA Logo">
+  </div>
   <span>About this portal</span>
   <span>Contact person: Lenka Veselá</span>
 </footer>

@@ -35,17 +35,35 @@ header {
 
 .logos {
   display: flex;
-  height: 10vh;
+  height: 6rem;
   justify-content: left;
   padding: 1rem 0;
   border-bottom: 3px solid #000000;
 }
+.logos > img {
+  padding: 0 1rem;
+  border-right: 3px solid #000000;
+}
+.logos :first-child {
+  padding-left: 0;
+}
+.logos :last-child {
+  padding-left: 1rem;
+  padding-right: 0;
+  border-right: unset;
+}
+
+// FOOTER
 
 footer {
   display: flex;
   flex-direction: row;
   gap: 2rem;
   padding: 1rem 0;
+}
+footer .small {
+  height: 3rem;
+  border-bottom: unset;
 }
 
 

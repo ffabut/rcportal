@@ -10,10 +10,34 @@ import { TruncateSentencesPipe } from './truncate-sentences.pipe';
   imports: [CommonModule, TruncateSentencesPipe],
   template: `
 <div class="app-research-list">
-  <div class="rc-expositions">
-    <h2>Published in RC Journals</h2>
 
+  <div class="rc-expositions">
+    <div class="section-title">
+      <h2>Published in RC Journals</h2>
+    </div>
+
+    <div class="research-list">
+      <div *ngFor="let item of itemsRC" class="research-item" (click)="openInNewTab(item['default-page'])">
+        <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
+        <div class="details">
+          <h3>
+            <span class="author">{{ item.author.name }}</span> <br/>
+            <span class="article-title">{{ item.title }}</span>
+          </h3>
+          <p class="where" *ngIf="item.published_in?.length">
+            <span *ngFor="let pub of item.published_in; let last = last">
+              {{ pub.name }}{{ !last ? ', ' : '' }}
+            </span>
+          </p>
+          <p class="abstract">
+            {{ item.abstract | truncateSentences:500:' […]' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  
   </div>
+
 
   <div class="ffa-expositions">
     <div class="section-title">
@@ -22,7 +46,7 @@ import { TruncateSentencesPipe } from './truncate-sentences.pipe';
     </div>
 
     <div class="research-list">
-      <div *ngFor="let item of researchItems" class="research-item" (click)="openInNewTab(item['default-page'])">
+      <div *ngFor="let item of itemsFFARD" class="research-item" (click)="openInNewTab(item['default-page'])">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
         <div class="details">
           <h3>
@@ -40,19 +64,9 @@ import { TruncateSentencesPipe } from './truncate-sentences.pipe';
             {{ item.abstract | truncateSentences:500:' […]' }}
           </p>
         </div>
-
-        <!-- Probably unused
-        <div class="bottom">
-          <div class="keywords" *ngIf="item.keywords.length">
-            <span *ngFor="let keyword of item.keywords" class="keyword">
-              {{ keyword }}
-            </span>
-          </div>
-          <a [href]="item['default-page']" target="_blank" class="read-more">Read more</a>
-        </div>
-        -->
       </div>
     </div>
+
   </div>
 
   <div class="projects-current">
@@ -68,14 +82,22 @@ import { TruncateSentencesPipe } from './truncate-sentences.pipe';
 })
 
 export class ResearchListComponent implements OnInit {
-  researchItems: ResearchItem[] = [];
+  itemsRC: ResearchItem[] = [];
+  itemsFFARD: ResearchItem[] = [];
+  ffardID: number = 11; // TODO: Change this to actual ID of FFARD journal, now Academy Vienna
 
   constructor(private researchService: ResearchService) {}
 
   ngOnInit() {
-    this.researchService.getResearchItems().subscribe({
-      next: (items) => {
-        this.researchItems = items;
+    this.researchService.getAllResearchItems().subscribe({
+      next: (items: ResearchItem[]) => {
+        // SPLIT THE ITEMS BASED ON WHERE IT HAS BEEN PUBLISHED
+        this.itemsFFARD = items.filter(item =>
+          item.published_in?.some(pub => pub.id === 11)
+        );
+        this.itemsRC = items.filter(item =>
+          !item.published_in?.some(pub => pub.id === 11)
+        );
       },
       error: (error) => {
         console.error('Error fetching research items:', error);
@@ -86,4 +108,4 @@ export class ResearchListComponent implements OnInit {
   openInNewTab(url: string): void {
     window.open(url, '_blank', 'noopener');
   }
-} 
+}

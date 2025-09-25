@@ -1,6 +1,7 @@
 # FFA Art Research Portal
 
 Project for the FFA Art Research Portal showing the research items from the researchcatalogue.net API.
+Respectively rcmap.org which allowed us to use their proxy, thank you Casper Schipper!
 
 Aims to be a simple, static & lightweight portal for the FFA Art Research Catalogue.
 

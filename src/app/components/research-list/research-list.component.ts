@@ -10,18 +10,22 @@ import { ResearchService, ResearchItem } from '../../services/research.service';
 <div class="app-research-list">
   <div class="rc-expositions">
     <h2>Published in RC Journals</h2>
+
   </div>
 
   <div class="ffa-expositions">
-    <h2>FFA Research in Art and Design</h2>
-    <div class="subtitle">ISSN: 1234-5678</div>
+    <div class="section-title">
+      <h2>FFA Research in Art and Design</h2>
+      <div class="subtitle">ISSN: 1234-5678</div>
+    </div>
+
     <div class="research-list">
       <div *ngFor="let item of researchItems" class="research-item" (click)="openInNewTab(item['default-page'])">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
         <div class="details">
           <h3>
             <span class="author">{{ item.author.name }}</span> <br/>
-            <span>{{ item.title }}</span>
+            <span class="article-title">{{ item.title }}</span>
           </h3>
           
           <p class="where" *ngIf="item.published_in?.length">

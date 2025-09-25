@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+$black: #000000;
+$grey: #666666;
+$white: #ffffff;
+
 body {
   margin: 0;
   padding: 0 2rem;
   font-family: 'Roboto', sans-serif;
-  background-color: #ffffff;
+  background-color: $white;
 }
 
 a {
@@ -18,9 +22,9 @@ a:visited {
 
 h2, .subtitle {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: $black;
   margin: 0.1rem;
 }
 
@@ -32,6 +36,12 @@ header {
   gap: 5rem;
   padding: 1rem 0 1rem 0;
   border-bottom: 3px solid #000000;
+}
+header a {
+  color: $grey;
+}
+header a:visited {
+  color: $grey;
 }
 
 .logos {
@@ -152,6 +162,20 @@ h3{
   width: 100%;
   object-fit: cover;
   border-radius: 4px;
+}
+
+// RESEARCH-ITEM 
+.article-title {
+  font-weight: 600;
+  color: #000000;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.author, .where, .abstract {
+  color: $grey;
 }
 
 @media (max-width: 768px) {

@@ -10,6 +10,13 @@ import { TruncateSentencesPipe } from './truncate-sentences.pipe';
   imports: [CommonModule, TruncateSentencesPipe],
   template: `
 <div class="app-research-list">
+  <div class="keywords">
+    <span *ngFor="let entry of keywordEntries"
+          [ngStyle]="{ 'font-size.px': entry.size }"
+          class="keyword">
+      {{ entry.key }}
+    </span>
+  </div>
 
   <div class="rc-expositions">
     <div class="section-title">
@@ -85,6 +92,7 @@ export class ResearchListComponent implements OnInit {
   itemsRC: ResearchItem[] = [];
   itemsFFARD: ResearchItem[] = [];
   ffardID: number = 11; // TODO: Change this to actual ID of FFARD journal, now Academy Vienna
+  keywordEntries: { key: string; count: number; size: number }[] = [];
 
   constructor(private researchService: ResearchService) {}
 
@@ -98,6 +106,26 @@ export class ResearchListComponent implements OnInit {
         this.itemsRC = items.filter(item =>
           !item.published_in?.some(pub => pub.id === 11)
         );
+
+        // COUNT KEYWORDS
+        const counts = items.reduce((acc, i) => {
+          i.keywords?.forEach(k => acc[k] = (acc[k] || 0) + 1);
+          return acc;
+        }, {} as Record<string, number>);
+
+        const entries = Object.entries(counts).map(([key, count]) => ({ key, count }));
+        const countsArr = entries.map(e => e.count);
+        if (countsArr.length === 0) {
+          this.keywordEntries = [];
+          return;
+        }
+
+        const min = Math.min(...countsArr);
+        const max = Math.max(...countsArr);
+        this.keywordEntries = entries.map(e => ({
+          ...e,
+          size: this.scale(e.count, min, max, 16, 28),
+        }));
       },
       error: (error) => {
         console.error('Error fetching research items:', error);
@@ -107,5 +135,10 @@ export class ResearchListComponent implements OnInit {
 
   openInNewTab(url: string): void {
     window.open(url, '_blank', 'noopener');
+  }
+
+  private scale(value: number, min: number, max: number, outMin: number, outMax: number): number {
+    if (max === min) return (outMin + outMax) / 2; // all counts equal
+    return outMin + ((value - min) * (outMax - outMin)) / (max - min);
   }
 }

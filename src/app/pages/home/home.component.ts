@@ -8,13 +8,11 @@ import { ResearchListComponent } from '../../components/research-list/research-l
   imports: [CommonModule, ResearchListComponent],
   template: `
 <header>
-  <a href="https://favu.vut.cz" target="_blank">FFA</a>
-  <a href="https://tinyurl.com/FFA-Organigram" target="_blank">Organigram</a>
-  <a href="https://favu.vut.cz" target="_blank">Research</a>
-  <a href="https://favu.vut.cz" target="_blank">Publishing</a>
-  <a href="https://favu.vut.cz" target="_blank">Gallery</a>
-  <a href="https://www.favu.vut.cz/en/students/programmes?data%5Bts%5D=N&data%5Bfs%5D=&data%5Brok%5D=2024&data%5Bjv%5D=" target="_blank">MA's in Fine Arts and Design</a>
-  <a href="https://www.favu.vut.cz/en/phd" target="_blank">Doctoral Programmes</a>
+  <a href="https://favu.vut.cz/en/" target="_blank">FFA</a>
+  <a href="https://favu.vut.cz/en/publishing" target="_blank">FFA Publishing</a>
+  <a href="https://galerie.favu.vut.cz" target="_blank">FFA Gallery</a>
+  <a href="https://www.favu.vut.cz/en/international/degree-en" target="_blank">Master's in FAAD</a>
+  <a href="https://www.favu.vut.cz/en/phd" target="_blank">Doctorate in FAAD</a>
   <a href="https://www.favu.vut.cz/en/post-mag-post-doc" target="_blank">Postdoctoral Fellowships</a>
 </header>
 

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router'; 
 import { ResearchService, ResearchItem } from '../../services/research.service';
 import { TruncateSentencesPipe } from './truncate-sentences.pipe';
 import { environment } from '../../../environments/environment';
@@ -9,7 +10,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-research-list',
   standalone: true,
-  imports: [CommonModule, TruncateSentencesPipe],
+  imports: [CommonModule, TruncateSentencesPipe, RouterModule],
   template: `
 <div class="app-research-list">
   <div class="keywords">
@@ -26,7 +27,7 @@ import { environment } from '../../../environments/environment';
     </div>
 
     <div class="research-list">
-      <div *ngFor="let item of itemsRC" class="research-item" (click)="openInNewTab(item['default-page'])">
+      <div *ngFor="let item of itemsRC" class="research-item" (click)="goToArticleDetail(item)">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
         <div class="details">
           <h3>
@@ -55,7 +56,7 @@ import { environment } from '../../../environments/environment';
     </div>
 
     <div class="research-list">
-      <div *ngFor="let item of itemsFFARD" class="research-item" (click)="openInNewTab(item['default-page'])">
+      <div *ngFor="let item of itemsFFARD" class="research-item" (click)="goToArticleDetail(item)">
         <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
         <div class="details">
           <h3>
@@ -94,7 +95,10 @@ export class ResearchListComponent implements OnInit {
   itemsRC: ResearchItem[] = [];
   itemsFFARD: ResearchItem[] = [];
   keywordEntries: { key: string; count: number; size: number }[] = [];
-  constructor(private researchService: ResearchService) {}
+  constructor(
+    private researchService: ResearchService,
+    private router: Router          
+  ){}
 
   ngOnInit() {
     this.researchService.getAllResearchItems().subscribe({
@@ -135,6 +139,10 @@ export class ResearchListComponent implements OnInit {
 
   openInNewTab(url: string): void {
     window.open(url, '_blank', 'noopener');
+  }
+
+  goToArticleDetail(article: ResearchItem): void {
+    this.router.navigate(['/id', article.id], { state: { item: article } }); // internal nav, no full reload
   }
 
   private scale(value: number, min: number, max: number, outMin: number, outMax: number): number {

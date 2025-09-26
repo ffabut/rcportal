@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router'; 
 import { ResearchService, ResearchItem } from '../../services/research.service';
 import { TruncateSentencesPipe } from './truncate-sentences.pipe';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../../../shared/environments/environment';
 //import { TruncatePipe } from './truncate.pipe';
 
 

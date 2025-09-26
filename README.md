@@ -18,7 +18,7 @@ https://rcdata.org/api/portal/search-result?resulttype=research&format=json&limi
 ## Deploy files
 ```
 sftp -i ~/.ssh/portal-favu-vut-cz-gajdosik web-portal@vampire.ffa.vutbr.cz
-lcd dist/ffa-portal/browser
+lcd dist/portal/browser
 cd public_html
 rm *
 put -r *

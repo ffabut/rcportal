@@ -15,5 +15,5 @@ console.log('Running with environment:', environment);
   `
 })
 export class AppComponent {
-  title = 'ffa-portal';
+  title = 'portal';
 }

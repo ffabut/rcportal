@@ -2,7 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router'; 
 import { ResearchService, ResearchItem } from '../../../../../../shared/research.service';
-import { TruncateSentencesPipe } from './truncate-sentences.pipe';
+import { TruncateSentencesPipe } from '../../../../../../shared/truncate-sentences.pipe';
 import { environment } from '../../../../../../shared/environments/environment';
 
 @Component({

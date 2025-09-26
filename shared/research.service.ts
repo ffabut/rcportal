@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
-import { expand, filter, reduce, catchError, tap } from 'rxjs/operators';
+import { expand, filter, reduce, catchError, tap, shareReplay } from 'rxjs/operators';
 import { environment } from './environments/environment';
 
 export interface ResearchItem {
@@ -39,6 +39,13 @@ export interface ResearchItem {
 export class ResearchService {
   private apiUrl = `${environment.apiBaseUrl}/portal/search-result`;
 
+  // CACHE
+  private allItems$?: Observable<ResearchItem[]>;
+  private cacheKey?: string;
+  private cacheExpiresAt = 0;
+  private readonly TTL_MS = 5 * 60_000; // cache for 5 minutes (tune as needed)
+  // end CACHE
+
   constructor(private http: HttpClient) { }
 
   /** Fetch a single page */
@@ -61,7 +68,7 @@ export class ResearchService {
   }
 
   /** Fetch ALL pages by walking until the API stops returning items */
-  getAllResearchItems(limit = 30, maxPages = 10): Observable<ResearchItem[]> {
+  loadAll(limit = 30, maxPages = 10): Observable<ResearchItem[]> {
     return this.fetchPage(0, limit).pipe(
       // keep fetching while previous page looked "full"
       expand((items, pageIndex) => {
@@ -80,5 +87,34 @@ export class ResearchService {
         throw err;
       })
     );
+  }
+
+
+  /** Public API with cache */
+  getAllResearchItems(limit = 30, maxPages = 10): Observable<ResearchItem[]> {
+    const key = `${limit}|${maxPages}|${environment.ffaradID}`;
+    const now = Date.now();
+
+    // Serve from cache if present and fresh
+    if (this.allItems$ && this.cacheKey === key && now < this.cacheExpiresAt) {
+      return this.allItems$;
+    }
+
+    // (Re)build cache
+    this.cacheKey = key;
+    this.cacheExpiresAt = now + this.TTL_MS;
+    this.allItems$ = this.loadAll(limit, maxPages).pipe(
+      // cache and replay to future subscribers, even when there are no subscribers
+      shareReplay({ bufferSize: 1, refCount: false })
+    );
+
+    return this.allItems$;
+  }
+
+  /** Manual invalidation of the cache (call after a mutation, filter change, etc.) */
+  invalidateAll(): void {
+    this.allItems$ = undefined;
+    this.cacheKey = undefined;
+    this.cacheExpiresAt = 0;
   }
 }

@@ -1,17 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import type { ResearchItem } from '../../../../../../shared/research.service';
 import { FooterComponent } from '../../../../../../shared/components/footer.component'
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, RouterLink],
   styleUrl: './detail.component.scss',
   template: `
 <header class="detail">
   <div>Exposition</div>
-  <a href="">Back to previous page</a>
+  <a [routerLink]="['/']">Back to previous page</a>
 </header>
 <div class="article-detail">
   <ng-container *ngIf="item; else minimal">

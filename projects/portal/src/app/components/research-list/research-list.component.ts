@@ -1,6 +1,7 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router'; 
+import { Router, RouterModule } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ResearchService, ResearchItem } from '../../../../../../shared/research.service';
 import { TruncateSentencesPipe } from '../../../../../../shared/truncate-sentences.pipe';
 import { environment } from '../../../../../../shared/environments/environment';
@@ -95,13 +96,19 @@ export class ResearchListComponent implements OnInit {
   itemsRC: ResearchItem[] = [];
   itemsFFARD: ResearchItem[] = [];
   keywordEntries: { key: string; count: number; size: number }[] = [];
+
+  // 👇 inject DestroyRef in a field initializer (this is an injection context)
+  private readonly destroyRef = inject(DestroyRef);
+  
   constructor(
     private researchService: ResearchService,
     private router: Router          
   ){}
 
   ngOnInit() {
-    this.researchService.getAllResearchItems().subscribe({
+    this.researchService.getAllResearchItems()
+      .pipe(takeUntilDestroyed(this.destroyRef))   // 👈 pass the ref here
+      .subscribe({
       next: (items: ResearchItem[]) => {
         // SPLIT THE ITEMS BASED ON WHERE IT HAS BEEN PUBLISHED
         this.itemsFFARD = items.filter(item =>

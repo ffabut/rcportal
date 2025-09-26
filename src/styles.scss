@@ -111,14 +111,14 @@ footer .contact a, footer .contact a:visited {
   cursor: pointer;
 }
 
-.research-item {
-  transition: filter 0.5s ease-in-out;
-}
-
-.research-item:hover ~ .research-item,
-.research-item:has(~ .research-item:hover) {
-  filter: blur(1.7px);
-}
+// FILTER WHICH AFFECTS ELEMENTS WHICH ARE NOT HOVERED
+//.research-item {
+//  transition: filter 0.5s ease-in-out;
+//}
+//.research-item:hover ~ .research-item,
+//.research-item:has(~ .research-item:hover) {
+//  filter: blur(1.7px);
+//}
 
 .research-item .details {
   display: flex;

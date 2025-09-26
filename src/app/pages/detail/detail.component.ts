@@ -37,7 +37,7 @@ import { FooterComponent } from '../../components/footer/footer.component'
       </div>
 
       <div class="doi">
-        DOI: <a href="">from where we will take this data?</a>
+        DOI: <a href="{{item.doi.url}}">{{item.doi.url}}</a>
       </div>
       <div class="cite">
         Cite:

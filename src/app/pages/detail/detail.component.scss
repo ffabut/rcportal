@@ -46,3 +46,21 @@ button {
 .author {
     font-weight: 600;
 }
+
+.abstract {
+    color: $black;
+}
+
+.tags {
+    color: $grey;
+}
+
+.published_at {
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.doi > a {
+    color: $grey;
+    text-decoration: underline;
+}

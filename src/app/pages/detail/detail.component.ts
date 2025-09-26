@@ -27,6 +27,22 @@ import { FooterComponent } from '../../components/footer/footer.component'
       <div class="date" *ngIf="item.created?.length">Published: {{item.created}}</div>
       <p class="abstract" *ngIf="item.abstract">{{ item.abstract }}</p>
 
+      <p class="tags" *ngIf="item.keywords?.length">
+        {{ item.keywords!.join(', ') }}
+      </p>
+
+      <div class="published_at">
+        <div class="journal">FFA Research in Art and Design</div>
+        <div class="issn">ISSN: 1234-5678</div>
+      </div>
+
+      <div class="doi">
+        DOI: <a href="">from where we will take this data?</a>
+      </div>
+      <div class="cite">
+        Cite:
+        <span class="citation">as this</span>
+      </div>
     </div>
   </ng-container>
 

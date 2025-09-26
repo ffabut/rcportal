@@ -7,20 +7,18 @@ import { FooterComponent } from '../../../../../../shared/components/footer.comp
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, ResearchListComponent, FooterComponent],
+  styleUrl: './home.styles.scss',
   template: `
 <header>
-  <a href="https://favu.vut.cz/en/" target="_blank">FFA</a>
-  <a href="https://favu.vut.cz/en/publishing" target="_blank">FFA Publishing</a>
-  <a href="https://galerie.favu.vut.cz" target="_blank">FFA Gallery</a>
-  <a href="https://www.favu.vut.cz/en/international/degree-en" target="_blank">FAAD</a>
-  <a href="https://www.favu.vut.cz/en/phd" target="_blank">Doctorate</a>
-  <a href="https://www.favu.vut.cz/en/post-mag-post-doc" target="_blank">Postdoctoral Fellowships</a>
+  <div class="logos">
+    <img src="FFA_black_white_EN.png" alt="FFA Logo">
+    <img src="FFA_abbreviation_black_white_EN.png" alt="FFA Logo">
+  </div>
+  <h1>FFA Research in Art and Design</h1>
+  <div class="subtitle">ISSN: 1234-5678</div>
 </header>
 
-<div class="logos">
-  <img src="FFA_black_white_EN.png" alt="FFA Logo">
-  <img src="FFA_abbreviation_black_white_EN.png" alt="FFA Logo">
-</div>
+
 
 <app-research-list></app-research-list>
 <app-footer></app-footer>

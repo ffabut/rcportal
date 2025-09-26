@@ -1,0 +1,66 @@
+// TODO: inherit from global styles.scss
+$black: #000000;
+$grey: #666666;
+$white: #ffffff;
+
+h1 {
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+header {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding: 1rem 0;
+    border-top: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+  }
+
+.article-detail {
+    margin: 2rem 0;
+    gap: 1.5rem;
+    display: flex;
+    padding: 1rem;
+    border-bottom: 3px solid #000000;
+}
+
+button {
+    background-color: $black;
+    color: $white;
+    border: unset;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    cursor: pointer;
+}
+
+.left {
+    width: 30vw;
+}
+
+.right {
+    max-width: 50rem;
+}
+
+.author {
+    font-weight: 600;
+}
+
+.abstract {
+    color: $black;
+}
+
+.tags {
+    color: $grey;
+}
+
+.published_at {
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+.doi > a {
+    color: $grey;
+    text-decoration: underline;
+}

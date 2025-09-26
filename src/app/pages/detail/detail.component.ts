@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 import type { ResearchItem } from '../../services/research.service';
 
 @Component({
@@ -11,7 +10,7 @@ import type { ResearchItem } from '../../services/research.service';
 <div class="article-detail">
   <ng-container *ngIf="item; else minimal">
     <h1 class="title">{{ item.title }}</h1>
-    <p class="byline">{{ item.author?.name }}</p>
+    <p class="byline">{{ item.author.name }}</p>
 
     <p class="where" *ngIf="item.published_in?.length">
       <strong>Published in:</strong>
@@ -22,7 +21,7 @@ import type { ResearchItem } from '../../services/research.service';
 
     <p class="abstract" *ngIf="item.abstract">{{ item.abstract }}</p>
 
-    <button type="button" class="exit-btn" (click)="openOnPublisher()">
+    <button type="button" class="exit-btn" (click)="openOnPublisher(item['default-page'])">
       Open on publisher site
     </button>
   </ng-container>
@@ -30,9 +29,6 @@ import type { ResearchItem } from '../../services/research.service';
   <ng-template #minimal>
     <h1>Article {{ articleId }}</h1>
     <p>We couldn’t load extra details for this article in this view.</p>
-    <button type="button" class="exit-btn" (click)="openOnPublisher()">
-      Open on publisher site
-    </button>
   </ng-template>
 </div>
 `,
@@ -60,8 +56,7 @@ export class ArticleDetailComponent implements OnInit {
     if (stateItem) this.item = stateItem as ResearchItem;
   }
 
-  openOnPublisher(): void {
-    const url = `/${this.articleId}`; // external target format: {domain}/{article-id}
+  openOnPublisher(url: string): void {
     window.open(url, '_blank', 'noopener');
   }
 }

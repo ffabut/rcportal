@@ -11,8 +11,8 @@ import { ResearchListComponent } from '../../components/research-list/research-l
   <a href="https://favu.vut.cz/en/" target="_blank">FFA</a>
   <a href="https://favu.vut.cz/en/publishing" target="_blank">FFA Publishing</a>
   <a href="https://galerie.favu.vut.cz" target="_blank">FFA Gallery</a>
-  <a href="https://www.favu.vut.cz/en/international/degree-en" target="_blank">Master's in FAAD</a>
-  <a href="https://www.favu.vut.cz/en/phd" target="_blank">Doctorate in FAAD</a>
+  <a href="https://www.favu.vut.cz/en/international/degree-en" target="_blank">FAAD</a>
+  <a href="https://www.favu.vut.cz/en/phd" target="_blank">Doctorate</a>
   <a href="https://www.favu.vut.cz/en/post-mag-post-doc" target="_blank">Postdoctoral Fellowships</a>
 </header>
 

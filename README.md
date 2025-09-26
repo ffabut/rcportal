@@ -1,22 +1,25 @@
 # FFA Art Research Portal
 
 Project for the FFA Art Research Portal showing the research items from the researchcatalogue.net API.
-Respectively rcmap.org which allowed us to use their proxy, thank you Casper Schipper!
-
 Aims to be a simple, static & lightweight portal for the FFA Art Research Catalogue.
+
+This repository consists of 2 projects: portal (projects/portal, portal.favu.vut.cz) and journal (projects/journal, journal.favu.vut.cz).
+As these share behaviour and some design aspects, they are kept in one repository and as much code is shared as possible.
 
 ## APIs
 
 Original API of the Research Catalogue can be seen at: https://www.researchcatalogue.net/portal/search-result?resulttype=research&format=json&limit=2500&page=3
-
-However this project currently uses API provided by Casper Shipper.
+However this project currently uses API cors proxy provided by Casper Shipper (rcmap.org), thank you!
 
 ### Search all results from author
 We can search all results from author:
 https://rcdata.org/api/portal/search-result?resulttype=research&format=json&limit=2500&author=369929
 
 ## Deploy files
+
+Deploy portal build to portal.favu.vut.cz:
 ```
+ng build portal
 sftp -i ~/.ssh/portal-favu-vut-cz-gajdosik web-portal@vampire.ffa.vutbr.cz
 lcd dist/portal/browser
 cd public_html
@@ -24,6 +27,16 @@ rm *
 put -r *
 ```
 
+THIS NEEDS UPDATE ONCE JIRI PSOTA RESPONDS
+Deploy journal build to journal.favu.vut.cz:
+```
+ng build journal
+sftp -i ~/.ssh/portal-favu-vut-cz-gajdosik web-portal@vampire.ffa.vutbr.cz
+lcd dist/journal/browser
+cd public_html
+rm *
+put -r *
+```
 
 ## Development
 
@@ -31,13 +44,27 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ### Development server
 
-To start a local development server, run:
+To start a local development server of the portal, run:
 
 ```bash
 ng serve
 ```
+or explicitly:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+```bash
+ng serve portal
+```
+
+
+To serve journal, run:
+
+```bash
+ng serve journal
+```
+
+Once the server is running, open your browser and navigate to `http://localhost:4200/`, `http://localhost:55506/` or any other URL reported by the `ng serve` command.
+The application will automatically reload whenever you modify any of the source files.
+Both the `portal` and `journal` can be run at the same time.
 
 ### Code scaffolding
 

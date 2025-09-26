@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResearchService, ResearchItem } from '../../services/research.service';
-//import { TruncatePipe } from './truncate.pipe';
 import { TruncateSentencesPipe } from './truncate-sentences.pipe';
+import { environment } from '../../../environments/environment';
+//import { TruncatePipe } from './truncate.pipe';
+
 
 @Component({
   selector: 'app-research-list',
@@ -91,9 +93,7 @@ import { TruncateSentencesPipe } from './truncate-sentences.pipe';
 export class ResearchListComponent implements OnInit {
   itemsRC: ResearchItem[] = [];
   itemsFFARD: ResearchItem[] = [];
-  ffardID: number = 11; // TODO: Change this to actual ID of FFARD journal, now Academy Vienna
   keywordEntries: { key: string; count: number; size: number }[] = [];
-
   constructor(private researchService: ResearchService) {}
 
   ngOnInit() {
@@ -101,10 +101,10 @@ export class ResearchListComponent implements OnInit {
       next: (items: ResearchItem[]) => {
         // SPLIT THE ITEMS BASED ON WHERE IT HAS BEEN PUBLISHED
         this.itemsFFARD = items.filter(item =>
-          item.published_in?.some(pub => pub.id === 11)
+          item.published_in?.some(pub => pub.id === environment.ffaradID)
         );
         this.itemsRC = items.filter(item =>
-          !item.published_in?.some(pub => pub.id === 11)
+          !item.published_in?.some(pub => pub.id === environment.ffaradID)
         );
 
         // COUNT KEYWORDS

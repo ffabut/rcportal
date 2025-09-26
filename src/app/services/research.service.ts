@@ -48,7 +48,7 @@ export class ResearchService {
       resulttype: 'research',
       format: 'json',
       limit: String(limit),
-      portal: '11',
+      portal: `${environment.ffaradID}`,
       page: String(page),
     };
 

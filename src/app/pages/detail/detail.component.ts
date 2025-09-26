@@ -2,28 +2,32 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import type { ResearchItem } from '../../services/research.service';
+import { FooterComponent } from '../../components/footer/footer.component'
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FooterComponent],
+  styleUrl: './detail.component.scss',
   template: `
+<header class="detail">
+  <div>Exposition</div>
+  <a href="">Back to previous page</a>
+</header>
 <div class="article-detail">
   <ng-container *ngIf="item; else minimal">
-    <h1 class="title">{{ item.title }}</h1>
-    <p class="byline">{{ item.author.name }}</p>
+    <div class="left">
+      <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
+      <button type="button" class="exit-btn" (click)="openOnPublisher(item['default-page'])">
+        OPEN EXPOSITION
+      </button>
+    </div>
+    <div class="right">
+      <h1>{{ item.title }}</h1>
+      <div class="author">{{ item.author.name }}</div>
+      <div class="date" *ngIf="item.created?.length">Published: {{item.created}}</div>
+      <p class="abstract" *ngIf="item.abstract">{{ item.abstract }}</p>
 
-    <p class="where" *ngIf="item.published_in?.length">
-      <strong>Published in:</strong>
-      <span *ngFor="let pub of item.published_in; let last = last">
-        {{ pub.name }}{{ !last ? ', ' : '' }}
-      </span>
-    </p>
-
-    <p class="abstract" *ngIf="item.abstract">{{ item.abstract }}</p>
-
-    <button type="button" class="exit-btn" (click)="openOnPublisher(item['default-page'])">
-      Open on publisher site
-    </button>
+    </div>
   </ng-container>
 
   <ng-template #minimal>
@@ -31,14 +35,10 @@ import type { ResearchItem } from '../../services/research.service';
     <p>We couldn’t load extra details for this article in this view.</p>
   </ng-template>
 </div>
-`,
-  styles: [`
-.article-detail { padding: 1rem; }
-.title { margin: 0 0 .25rem; }
-.byline { opacity: .8; margin: 0 0 1rem; }
-.exit-btn { margin-top: 1rem; }
-`]
-})
+
+<app-footer></app-footer>
+`})
+
 export class ArticleDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import { expand, filter, reduce, catchError, tap } from 'rxjs/operators';
-import { environment } from '../../../../../shared/environments/environment';
+import { environment } from './environments/environment';
 
 export interface ResearchItem {
   id: number;

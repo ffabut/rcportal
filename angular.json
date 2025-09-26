@@ -10,20 +10,20 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/portal",
+      "sourceRoot": "projects/portal/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/ffa-portal",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "index": "projects/portal/src/index.html",
+            "browser": "projects/portal/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "projects/portal/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
@@ -32,7 +32,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/portal/src/styles.scss"
             ],
             "scripts": []
           },
@@ -53,8 +53,8 @@
               "outputHashing": "all",
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.production.ts"
+                  "replace": "projects/portal/src/environments/environment.ts",
+                  "with": "projects/portal/src/environments/environment.production.ts"
                 }
               ]
             },
@@ -78,7 +78,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "projects/portal/proxy.conf.json"
           }
         },
         "extract-i18n": {
@@ -100,7 +100,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/portal/src/styles.scss"
             ],
             "scripts": []
           }

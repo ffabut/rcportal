@@ -132,7 +132,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/journal/public"
+                "input": "public"
               }
             ],
             "styles": [
@@ -191,7 +191,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/journal/public"
+                "input": "public"
               }
             ],
             "styles": [

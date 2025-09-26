@@ -32,7 +32,7 @@
               }
             ],
             "styles": [
-              "projects/portal/src/styles.scss"
+              "shared/styles.scss"
             ],
             "scripts": []
           },
@@ -53,8 +53,8 @@
               "outputHashing": "all",
               "fileReplacements": [
                 {
-                  "replace": "projects/portal/src/environments/environment.ts",
-                  "with": "projects/portal/src/environments/environment.production.ts"
+                  "replace": "shared/environments/environment.ts",
+                  "with": "shared/environments/environment.production.ts"
                 }
               ]
             },
@@ -100,7 +100,7 @@
               }
             ],
             "styles": [
-              "projects/portal/src/styles.scss"
+              "shared/styles.scss"
             ],
             "scripts": []
           }
@@ -136,7 +136,7 @@
               }
             ],
             "styles": [
-              "projects/journal/src/styles.scss"
+              "shared/styles.scss"
             ],
             "scripts": []
           },
@@ -195,7 +195,7 @@
               }
             ],
             "styles": [
-              "projects/journal/src/styles.scss"
+              "shared/styles.scss"
             ],
             "scripts": []
           }

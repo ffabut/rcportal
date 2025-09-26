@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResearchListComponent } from '../../components/research-list/research-list.component';
+import { JournalListComponent } from '../../components/journal-list/journal-list.component';
 import { FooterComponent } from '../../../../../../shared/components/footer.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ResearchListComponent, FooterComponent],
+  imports: [CommonModule, JournalListComponent, FooterComponent],
   styleUrl: './home.styles.scss',
   template: `
 <header>
@@ -18,9 +18,7 @@ import { FooterComponent } from '../../../../../../shared/components/footer.comp
   <div class="subtitle">ISSN: 1234-5678</div>
 </header>
 
-
-
-<app-research-list></app-research-list>
+<app-journal-list></app-journal-list>
 <app-footer></app-footer>
 `})
 export class HomeComponent {} 

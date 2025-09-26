@@ -4,15 +4,13 @@ import { Router, RouterModule } from '@angular/router';
 import { ResearchService, ResearchItem } from '../../../../../../shared/research.service';
 import { TruncateSentencesPipe } from './truncate-sentences.pipe';
 import { environment } from '../../../../../../shared/environments/environment';
-//import { TruncatePipe } from './truncate.pipe';
-
 
 @Component({
-  selector: 'app-research-list',
+  selector: 'app-journal-list',
   standalone: true,
   imports: [CommonModule, TruncateSentencesPipe, RouterModule],
   template: `
-<div class="app-research-list">
+<div class="app-journal-list">
   <div class="keywords">
     <span *ngFor="let entry of keywordEntries"
           [ngStyle]="{ 'font-size.px': entry.size }"
@@ -21,38 +19,9 @@ import { environment } from '../../../../../../shared/environments/environment';
     </span>
   </div>
 
-  <div class="rc-expositions">
+  <div class="research-expositions">
     <div class="section-title">
-      <h2>Published in RC Journals</h2>
-    </div>
-
-    <div class="research-list">
-      <div *ngFor="let item of itemsRC" class="research-item" (click)="goToArticleDetail(item)">
-        <img *ngIf="item.thumb" [src]="item.thumb" [alt]="item.title" class="thumbnail">
-        <div class="details">
-          <h3>
-            <span class="author">{{ item.author.name }}</span> <br/>
-            <span class="article-title">{{ item.title }}</span>
-          </h3>
-          <p class="where" *ngIf="item.published_in?.length">
-            <span *ngFor="let pub of item.published_in; let last = last">
-              {{ pub.name }}{{ !last ? ', ' : '' }}
-            </span>
-          </p>
-          <p class="abstract">
-            {{ item.abstract | truncateSentences:500:' […]' }}
-          </p>
-        </div>
-      </div>
-    </div>
-  
-  </div>
-
-
-  <div class="ffa-expositions">
-    <div class="section-title">
-      <h2>FFA Research in Art and Design</h2>
-      <div class="subtitle">ISSN: 1234-5678</div>
+      <h2>Research Expositions</h2>
     </div>
 
     <div class="research-list">
@@ -79,19 +48,15 @@ import { environment } from '../../../../../../shared/environments/environment';
 
   </div>
 
-  <div class="projects-current">
-    <h2>Projects Current</h2>
-  </div>
-  
-  <div class="projects-previous">
-    <h2>Projects Previous</h2>
+  <div class="research-reports">
+    <h2>Research Reports</h2>
   </div>
 
 </div>
 `
 })
 
-export class ResearchListComponent implements OnInit {
+export class JournalListComponent implements OnInit {
   itemsRC: ResearchItem[] = [];
   itemsFFARD: ResearchItem[] = [];
   keywordEntries: { key: string; count: number; size: number }[] = [];

@@ -80,14 +80,6 @@ import { environment } from '../../../../../../shared/environments/environment';
 
   </div>
 
-  <div class="projects-current">
-    <h2>Projects Current</h2>
-  </div>
-  
-  <div class="projects-previous">
-    <h2>Projects Previous</h2>
-  </div>
-
 </div>
 `
 })

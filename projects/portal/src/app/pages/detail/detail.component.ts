@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import type { ResearchItem } from '../../../../../../shared/research.service';
-import { FooterComponent } from '../../../../../../shared/components/footer.component'
+import { FooterComponent } from '../../components/footer.component'
 
 @Component({
   standalone: true,

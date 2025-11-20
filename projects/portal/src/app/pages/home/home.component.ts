@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResearchListComponent } from '../../components/research-list/research-list.component';
-import { FooterComponent } from '../../../../../../shared/components/footer.component'
+import { ResearchListComponent } from '../../components/research-list.component';
+import { FooterComponent } from '../../components/footer.component'
 
 @Component({
   selector: 'app-home',

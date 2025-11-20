@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../../../../../shared/components/footer.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, HeaderComponent],
   styleUrl: './for_authors.styles.scss',
   template: `
-<header>
-  <a href="./">Home</a>
-  <a href="about">About</a>
-  <a href="for_authors">For authors</a>
-</header>
+<app-header></app-header>
 
 <div class="logobar">
   <div class="logos">

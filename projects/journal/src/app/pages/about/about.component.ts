@@ -1,18 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../../../../../shared/components/footer.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, FooterComponent, HeaderComponent],
   styleUrl: './about.styles.scss',
   template: `
-<header>
-  <a href="./">Home</a>
-  <a href="about">About</a>
-  <a href="for_authors">For authors</a>
-</header>
+<app-header></app-header>
 
 <div class="logobar">
   <div class="logos">
@@ -24,9 +21,6 @@ import { FooterComponent } from '../../../../../../shared/components/footer.comp
       <div class="subtitle">ISSN: 1993-2025</div>
   </div>
 </div>
-
-
-
 
 <app-footer></app-footer>
 `})

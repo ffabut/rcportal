@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JournalListComponent } from '../../components/journal-list/journal-list.component';
+import { JournalListComponent } from '../../components/journal-list.component';
+import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../../../../../shared/components/footer.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, JournalListComponent, FooterComponent],
+  imports: [CommonModule, JournalListComponent, FooterComponent, HeaderComponent],
   styleUrl: './home.styles.scss',
   template: `
-<header>
-  <a href="./">Home</a>
-  <a href="about">About</a>
-  <a href="for_authors">For authors</a>
-</header>
+<app-header></app-header>
 
 <div class="logobar">
   <div class="logos">

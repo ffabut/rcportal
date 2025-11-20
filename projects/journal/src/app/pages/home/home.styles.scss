@@ -1,16 +1,9 @@
 
 
-header {
-    display: block;
-    padding: 2rem 0;
-}
-
-h1 {
-    margin: 2rem 0 0 0;
-}
-h1, .subtitle{
-    font-weight: 400;
-    font-size: 1.5rem;
+.logobar {
+    margin: 1rem 0 0 0;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #000000;
 }
 
 .logos {
@@ -18,7 +11,15 @@ h1, .subtitle{
     padding: unset;
     height: unset;
 }
-
 .logos > img {
     height: 3rem;
+}
+
+.titles {
+    margin: 1rem 0 0 0;
+}
+h1, .subtitle{
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 0.5rem 0 0 0;
 }

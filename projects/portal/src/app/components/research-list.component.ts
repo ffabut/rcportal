@@ -2,9 +2,9 @@ import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ResearchService, ResearchItem } from '../../../../../../shared/research.service';
-import { TruncateSentencesPipe } from '../../../../../../shared/truncate-sentences.pipe';
-import { environment } from '../../../../../../shared/environments/environment';
+import { ResearchService, ResearchItem } from '../../../../../shared/research.service';
+import { TruncateSentencesPipe } from '../../../../../shared/truncate-sentences.pipe';
+import { environment } from '../../../../../shared/environments/environment';
 //import { TruncatePipe } from './truncate.pipe';
 
 

@@ -87,6 +87,13 @@ footer .contact {
 footer .contact a, footer .contact a:visited {
   color: $grey;
 }
+footer > .noborder > img {
+  border-right: unset;
+}
+footer .middle {
+  padding: 1rem 0;
+  min-width: 400px;
+}
 
 // RESEARCH LIST
 .rc-expositions,
@@ -212,8 +219,4 @@ h3{
   font-size: 1.2rem;
   padding: 2rem 0 1.5rem 0;
   line-height: 22px;
-}
-
-footer > .noborder > img {
-  border-right: unset;
 }

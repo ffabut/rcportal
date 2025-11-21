@@ -6,6 +6,11 @@ Aims to be a simple, static & lightweight portal for the FFA Art Research Catalo
 This repository consists of 2 projects: portal (projects/portal, portal.favu.vut.cz) and journal (projects/journal, journal.favu.vut.cz).
 As these share behaviour and some design aspects, they are kept in one repository and as much code is shared as possible.
 
+## Otazky
+
+Na Jozefa: Kde se vzalo 3 radkove logo? https://designmanual.planobnovy.gov.cz/logo.html
+
+
 ## APIs
 
 Original API of the Research Catalogue can be seen at: https://www.researchcatalogue.net/portal/search-result?resulttype=research&format=json&limit=2500&page=3

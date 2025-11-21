@@ -11,6 +11,10 @@ As these share behaviour and some design aspects, they are kept in one repositor
 Original API of the Research Catalogue can be seen at: https://www.researchcatalogue.net/portal/search-result?resulttype=research&format=json&limit=2500&page=3
 However this project currently uses API cors proxy provided by Casper Shipper (rcmap.org), thank you!
 
+### Clanky
+
+https://www.researchcatalogue.net/view/1609630/2671314 id=1609630
+
 ### Search all results from author
 We can search all results from author:
 https://rcdata.org/api/portal/search-result?resulttype=research&format=json&limit=2500&author=369929

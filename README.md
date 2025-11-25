@@ -42,7 +42,7 @@ Deploy journal build to journal.favu.vut.cz:
 ng build journal
 sftp -i ~/.ssh/portal-favu-vut-cz-gajdosik web-portal@vampire.ffa.vutbr.cz
 lcd dist/journal/browser
-cd public_html
+cd public_html_journal
 rm *
 put -r *
 ```

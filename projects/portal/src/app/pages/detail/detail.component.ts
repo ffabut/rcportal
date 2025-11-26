@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import type { ResearchItem } from '../../../../../../shared/research.service';
 import { FooterComponent } from '../../components/footer.component'
 
@@ -58,22 +59,26 @@ import { FooterComponent } from '../../components/footer.component'
 </main>
 <app-footer></app-footer>
 `})
-
 export class ArticleDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private title = inject(Title);
 
   articleId!: string;
   item: ResearchItem | undefined;
 
   ngOnInit(): void {
     this.articleId = this.route.snapshot.paramMap.get('articleId') ?? '';
+    this.title.setTitle(`FFARAD | Exposition ${this.articleId}`); // default ID specific title
 
-    // Prefer item passed via navigation state (no extra HTTP call needed)
+    // Prefer item passed via navigation state (no extra HTTP call)
     // Works when navigating from the list; on hard reload it may be undefined.
     const stateItem = (this.router.getCurrentNavigation()?.extras.state as any)?.item
                    ?? (history.state as any)?.item;
-    if (stateItem) this.item = stateItem as ResearchItem;
+    if (stateItem) {
+      this.item = stateItem as ResearchItem;
+      this.title.setTitle(`FFARAD | Exposition: ${this.item.title}`);
+    }
   }
 
   openOnPublisher(url: string): void {

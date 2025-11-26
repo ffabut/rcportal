@@ -1,10 +1,18 @@
 {
   "/api": {
-    "target": "https://www.researchcatalogue.net",
+    "target": "https://rcdata.org/api",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {
       "^/api": ""
+    }
+  },
+  "/proxied_map-rcdata-org": {
+    "target": "https://map.rcdata.org",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/proxied_map-rcdata-org": ""
     }
   }
 }

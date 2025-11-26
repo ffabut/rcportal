@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, forkJoin } from 'rxjs';
 import { expand, filter, reduce, catchError, tap, shareReplay } from 'rxjs/operators';
 import { environment } from './environments/environment';
 
@@ -33,6 +33,15 @@ export interface ResearchItem {
   abstract: string;
 }
 
+export interface RCmapResearchResponse {
+  hyperlinks: string[]; // We do not care much
+  ids: number; 
+  meta: ResearchItem;
+  pages: any; // We do not care much
+  text: any; // We do not care much
+  url: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -43,10 +52,27 @@ export class ResearchService {
   private allItems$?: Observable<ResearchItem[]>;
   private cacheKey?: string;
   private cacheExpiresAt = 0;
+  private rcItems$?: Observable<RCmapResearchResponse[]>;
+  private rcCacheExpiresAt = 0;
   private readonly TTL_MS = 5 * 60_000; // cache for 5 minutes (tune as needed)
   // end CACHE
 
   constructor(private http: HttpClient) { }
+
+  /** Fetch a single research item by ID */
+  private fetchItemById(id: number): Observable<RCmapResearchResponse> {
+    const url = `${environment.singleExpoUrl}/rcjson/expo/${id}`;
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<RCmapResearchResponse>(url, { headers }).pipe(
+      catchError(err => {
+        console.error(`Failed to load research item with id ${id}:`, err);
+        return EMPTY;
+      })
+    );
+  }
 
   /** Fetch a single page */
   private fetchPage(page: number, limit = 30): Observable<ResearchItem[]> {
@@ -111,10 +137,42 @@ export class ResearchService {
     return this.allItems$;
   }
 
+  /** Fetch research items by specific IDs */
+  getResearchItemsByIds(ids: number[]): Observable<RCmapResearchResponse[]> {
+    const now = Date.now();
+
+    // Serve from cache if present and fresh
+    if (this.rcItems$ && now < this.rcCacheExpiresAt) {
+      return this.rcItems$;
+    }
+
+    // (Re)build cache by fetching all items in parallel and combining
+    this.rcCacheExpiresAt = now + this.TTL_MS;
+    this.rcItems$ = forkJoin(
+      ids.map(id => this.fetchItemById(id))
+    ).pipe(
+      filter(items => items.length > 0),
+      tap(response => console.log('RC Items Response:', response)),
+      shareReplay({ bufferSize: 1, refCount: false }),
+      catchError(err => {
+        console.error('Failed to load RC research items:', err);
+        return EMPTY;
+      })
+    );
+
+    return this.rcItems$;
+  }
+
   /** Manual invalidation of the cache (call after a mutation, filter change, etc.) */
   invalidateAll(): void {
     this.allItems$ = undefined;
     this.cacheKey = undefined;
     this.cacheExpiresAt = 0;
+  }
+
+  /** Manual invalidation of RC items cache */
+  invalidateRCItems(): void {
+    this.rcItems$ = undefined;
+    this.rcCacheExpiresAt = 0;
   }
 }

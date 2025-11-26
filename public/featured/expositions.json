@@ -1,0 +1,56 @@
+[{
+    "id": 1609630,
+    "type": "exposition",
+    "title": "synthetic bodies: protocols for intra-acting",
+    "thumb": "/featured/imgs/1609630.png",
+    "default-page": "https://www.researchcatalogue.net/view/1609630/2671314",
+    "meta-data-page": "https://www.researchcatalogue.net/profile/show-exposition?exposition=1609630",
+    "keywords": [
+      "synthetic bodies",
+      "synthetic chemicals",
+      "environmental chemicals",
+      "environment",
+      "posthumanism",
+      "new materialism",
+      "decolonial feminisms",
+      "chemical exposure",
+      "toxicity",
+      "contamination",
+      "impurity",
+      "anti-toxic action",
+      "feminist technoscience",
+      "intra-action",
+      "queer ecologies",
+      "becoming"
+    ],
+    "created": "26/04/2022",
+    "last-modified": 1730884073,
+    "status": "published",
+    "doi": {
+      "id": "10.22501/jar.1609630",
+      "url": "https://doi.org/10.22501/jar.1609630"
+    },
+    "published": "06/11/2024",
+    "published_in": [
+      {
+        "id": 2,
+        "name": "Journal for Artistic Research",
+        "name_short": "JAR"
+      }
+    ],
+    "connected_to": [],
+    "license": "cc-by-nc-nd",
+    "issue": {
+      "id": 2959783,
+      "number": "33",
+      "title": null
+    },
+    "author": {
+      "id": 1274421,
+      "name": "Lenka Vesela",
+      "orcid": null
+    },
+    "coauthors": [],
+    "abstract": "Our bodies are porous entities that interconnect with and depend on the broader collectivity of human and nonhuman life that exists within a shared environment. Using the figuration of synthetic bodies, this exposition aims to examine the relationships in which we are enmeshed as our bodies absorb and excrete chemicals. With a focus on involuntary exposure to industrially manufactured chemicals (as opposed to exposure to naturally occurring chemicals or voluntary experimentation with chemicals of all types), this exposition invites readers to learn about the chemicals to which we are exposed and by which we are affected. With the ubiquity of chemicals in the environment, who are we becoming? How do chemicals affect us and how do we interact with them? How can we live well with chemicals in spite of their potential to harm? Adopting a decolonial feminist, posthumanist, and new materialist approach and embracing queer ecological sensibilities, this exposition develops protocols for embodied and materially embedded research practices that trace the effects of exposure to chemicals in everyday life. In so doing, it aims to demonstrate how we might build resilience through encounters with toxicity, contamination, and impurity.\r\n<style>\r\n/* rules to make button only show up in META */\r\n.download-accessible {\r\n    display:none;\r\n}\r\n\r\n.meta-right-col .download-accessible {\r\n    display: inline-block;\r\n    padding: 9px; \r\n    margin-bottom:25px; \r\n    border: 1px solid black; \r\n    background-color:white;\r\n}\r\n</style>\r\n<a class=\"download-accessible\" href=\"download-media?work=3155507&amp;file=3155516\" title=\"This accessible PDF is a derivative of the original which it is meant to support and not replace.\">Download Accessible PDF</a>"
+  }
+]

@@ -2,7 +2,7 @@ import { Component, OnInit, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ResearchService, ResearchItem, RCmapResearchResponse } from '../../../../../shared/research.service';
+import { ResearchService, ResearchItem } from '../../../../../shared/research.service';
 import { TruncateSentencesPipe } from '../../../../../shared/truncate-sentences.pipe';
 import { environment } from '../../../../../shared/environments/environment';
 //import { TruncatePipe } from './truncate.pipe';
@@ -28,20 +28,20 @@ import { environment } from '../../../../../shared/environments/environment';
     </div>
 
     <div class="research-list">
-      <div *ngFor="let item of itemsRC" class="research-item" (click)="goToArticleDetail(item.meta)">
-        <img *ngIf="item.meta.thumb" [src]="item.meta.thumb" class="thumbnail">
+      <div *ngFor="let item of itemsRC" class="research-item" (click)="goToArticleDetail(item)">
+        <img *ngIf="item.thumb" [src]="item.thumb" class="thumbnail">
         <div class="details">
           <h3>
-            <span class="author">{{ item.meta.author.name }}</span> <br/>
-            <span class="article-title">{{ item.meta.title }}</span>
+            <span class="author">{{ item.author.name }}</span> <br/>
+            <span class="article-title">{{ item.title }}</span>
           </h3>
-          <p class="where" *ngIf="item.meta.published_in?.length">
-            <span *ngFor="let pub of item.meta.published_in; let last = last">
+          <p class="where" *ngIf="item.published_in?.length">
+            <span *ngFor="let pub of item.published_in; let last = last">
               {{ pub.name }}{{ !last ? ', ' : '' }}
             </span>
           </p>
           <p class="abstract">
-            {{ item.meta.abstract | truncateSentences:500:' […]' }}
+            {{ item.abstract | truncateSentences:500:' […]' }}
           </p>
         </div>
       </div>
@@ -85,11 +85,7 @@ import { environment } from '../../../../../shared/environments/environment';
 })
 
 export class ResearchListComponent implements OnInit {
-  FEATURED_EXPOSITION_IDS = [
-    1609630, // syntetic bodies - Lenka Vesela @ RC Catalogue
-  ];
-  
-  itemsRC: RCmapResearchResponse[] = [];
+  itemsRC: ResearchItem[] = [];
   itemsFFARD: ResearchItem[] = [];
   keywordEntries: { key: string; count: number; size: number }[] = [];
 
@@ -102,16 +98,14 @@ export class ResearchListComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    // Fetch RC expositions by specific IDs
-    this.researchService.getResearchItemsByIds(this.FEATURED_EXPOSITION_IDS)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        next: (items: RCmapResearchResponse[]) => {
-          this.itemsRC = items;
-        },
-        error: (error) => {
-          console.error('Error fetching RC research items:', error);
-        }
+    // Fetch RC expositions from local JSON
+    fetch('/featured/expositions.json')
+      .then(res => res.json() as Promise<ResearchItem[]>)
+      .then((items: ResearchItem[]) => {
+        this.itemsRC = items;
+      })
+      .catch(error => {
+        console.error('Error fetching featured expositions:', error);
       });
 
     // Fetch FFA expositions

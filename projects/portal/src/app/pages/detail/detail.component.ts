@@ -5,6 +5,7 @@ import type { ResearchItem } from '../../../../../../shared/research.service';
 import { FooterComponent } from '../../components/footer.component'
 
 @Component({
+  selector: 'app-portal',
   standalone: true,
   imports: [CommonModule, FooterComponent, RouterLink],
   styleUrl: './detail.component.scss',
@@ -13,6 +14,8 @@ import { FooterComponent } from '../../components/footer.component'
   <div>Exposition</div>
   <a [routerLink]="['/']">Back to previous page</a>
 </header>
+<main>
+
 <div class="article-detail">
   <ng-container *ngIf="item; else minimal">
     <div class="left">
@@ -52,6 +55,7 @@ import { FooterComponent } from '../../components/footer.component'
   </ng-template>
 </div>
 
+</main>
 <app-footer></app-footer>
 `})
 

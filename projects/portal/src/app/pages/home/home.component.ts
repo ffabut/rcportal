@@ -4,7 +4,7 @@ import { ResearchListComponent } from '../../components/research-list.component'
 import { FooterComponent } from '../../components/footer.component'
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-portal',
   standalone: true,
   imports: [CommonModule, ResearchListComponent, FooterComponent],
   template: `
@@ -16,6 +16,7 @@ import { FooterComponent } from '../../components/footer.component'
   <a href="https://www.favu.vut.cz/en/phd" target="_blank">Doctorate</a>
   <a href="https://www.favu.vut.cz/en/post-mag-post-doc" target="_blank">Postdoctoral Fellowships</a>
 </header>
+<main>
 
 <div class="logos">
   <img src="FFA_black_white_EN.png" alt="FFA Logo">
@@ -23,6 +24,8 @@ import { FooterComponent } from '../../components/footer.component'
 </div>
 
 <app-research-list></app-research-list>
+
+</main>
 <app-footer></app-footer>
 `})
 export class HomeComponent {} 

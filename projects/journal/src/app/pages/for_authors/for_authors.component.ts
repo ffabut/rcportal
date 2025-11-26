@@ -4,13 +4,13 @@ import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../components/footer.component'
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-journal',
   standalone: true,
   imports: [CommonModule, FooterComponent, HeaderComponent],
   styleUrl: './for_authors.styles.scss',
   template: `
 <app-header></app-header>
-
+<main>
 <div class="logobar">
   <div class="logos">
     <img src="FFA_black_white_EN.png" alt="FFA Logo">
@@ -22,6 +22,7 @@ import { FooterComponent } from '../../components/footer.component'
   </div>
 </div>
 
+</main>
 <app-footer></app-footer>
 `})
 export class ForAuthorsComponent {} 

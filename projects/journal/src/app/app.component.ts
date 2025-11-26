@@ -9,9 +9,7 @@ console.log('Running with environment:', environment);
   standalone: true,
   imports: [RouterOutlet],
   template: `
-    <main>
-      <router-outlet></router-outlet>
-    </main>
+    <router-outlet></router-outlet>
   `
 })
 export class AppComponent {

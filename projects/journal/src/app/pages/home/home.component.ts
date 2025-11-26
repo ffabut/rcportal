@@ -5,12 +5,13 @@ import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../components/footer.component';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-journal',
   standalone: true,
   imports: [CommonModule, JournalListComponent, FooterComponent, HeaderComponent],
   styleUrl: './home.styles.scss',
   template: `
 <app-header></app-header>
+<main>
 
 <div class="logobar">
   <div class="logos">
@@ -22,8 +23,9 @@ import { FooterComponent } from '../../components/footer.component';
       <div class="subtitle">ISSN: 1993-2025</div>
   </div>
 </div>
-
 <app-journal-list></app-journal-list>
+
+</main>
 <app-footer></app-footer>
 `})
 export class HomeComponent {} 

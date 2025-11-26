@@ -4,12 +4,13 @@ import { HeaderComponent } from '../../components/header.component';
 import { FooterComponent } from '../../components/footer.component'
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-journal',
   standalone: true,
   imports: [CommonModule, FooterComponent, HeaderComponent],
   styleUrl: './about.styles.scss',
   template: `
 <app-header></app-header>
+<main>
 
 <div class="logobar">
   <div class="logos">
@@ -21,9 +22,6 @@ import { FooterComponent } from '../../components/footer.component'
       <div class="subtitle">ISSN: 1993-2025</div>
   </div>
 </div>
-
-
-<div>
 
 <div class="editorial">
 FFA Research in Art and Design (FFARAD) is an online open-access journal published by the Faculty of Fine Arts (FFA), Brno University of Technology (BUT), under the CC BY-NC-ND Creative Commons license.
@@ -38,6 +36,7 @@ Established in 2025, FFARAD publishes in English and issues ten original researc
   <div>Contact: Lenka Veselá <a href="mailto:vesela@favu.vut.cz">vesela&#64;favu.vut.cz</a></div>
 </div>
 
+</main>
 <app-footer></app-footer>
 `})
 export class AboutComponent {} 

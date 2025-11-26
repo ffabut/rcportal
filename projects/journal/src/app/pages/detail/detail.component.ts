@@ -5,6 +5,7 @@ import type { ResearchItem } from '../../../../../../shared/research.service';
 import { FooterComponent } from '../../components/footer.component'
 
 @Component({
+  selector: 'app-journal',
   standalone: true,
   imports: [CommonModule, FooterComponent, RouterLink],
   styleUrl: './detail.component.scss',

@@ -14,7 +14,9 @@ Na Jozefa: Kde se vzalo 3 radkove logo? https://designmanual.planobnovy.gov.cz/l
 ## APIs
 
 Original API of the Research Catalogue can be seen at: https://www.researchcatalogue.net/portal/search-result?resulttype=research&format=json&limit=2500&page=3
+
 However this project currently uses API cors proxy provided by Casper Shipper (rcmap.org), thank you!
+Some docs for rcmap.org: https://www.researchcatalogue.net/view/3561733/3561732
 
 ### Clanky
 

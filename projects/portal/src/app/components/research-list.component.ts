@@ -98,16 +98,10 @@ export class ResearchListComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    // Fetch RC expositions from local JSON
-    fetch('/featured/expositions.json')
-      .then(res => res.json() as Promise<ResearchItem[]>)
-      .then((items: ResearchItem[]) => {
-        this.itemsRC = items;
-      })
-      .catch(error => {
-        console.error('Error fetching featured expositions:', error);
-      });
-
+    // Fetch RC expositions from service
+    this.researchService.getFeaturedExpositions()
+      .then((rcItems: ResearchItem[]) => {
+        this.itemsRC = rcItems;
     // Fetch FFA expositions
     this.researchService.getAllResearchItems()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -118,14 +112,16 @@ export class ResearchListComponent implements OnInit {
           item.published_in?.some(pub => pub.id === environment.ffaradID)
         );
 
-        // COUNT KEYWORDS
-        const counts = items.reduce((acc, i) => {
-          i.keywords?.forEach(k => acc[k] = (acc[k] || 0) + 1);
+        // COUNT KEYWORDS from both FFA and featured RC items
+        const allKeywords = [...rcItems, ...items].reduce((acc, i) => {
+          (i.keywords ?? []).forEach((k: string) => {
+            acc[k] = (acc[k] || 0) + 1;
+          });
           return acc;
         }, {} as Record<string, number>);
 
-        const entries = Object.entries(counts).map(([key, count]) => ({ key, count }));
-        const countsArr = entries.map(e => e.count);
+        const entries = Object.entries(allKeywords).map(([key, count]) => ({ key, count: Number(count) }));
+        const countsArr: number[] = entries.map(e => Number(e.count));
         if (countsArr.length === 0) {
           this.keywordEntries = [];
           return;
@@ -134,7 +130,8 @@ export class ResearchListComponent implements OnInit {
         const min = Math.min(...countsArr);
         const max = Math.max(...countsArr);
         this.keywordEntries = entries.map(e => ({
-          ...e,
+          key: e.key,
+          count: e.count,
           size: this.scale(e.count, min, max, 16, 28),
         }));
       },
@@ -142,6 +139,10 @@ export class ResearchListComponent implements OnInit {
         console.error('Error fetching research items:', error);
       }
     });
+})
+.catch(error => {
+  console.error('Error fetching featured expositions:', error);
+});
   }
 
   openInNewTab(url: string): void {

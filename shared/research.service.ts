@@ -46,13 +46,18 @@ export interface RCmapResearchResponse {
   providedIn: 'root'
 })
 export class ResearchService {
+  /** Fetch featured expositions from local JSON */
+  async getFeaturedExpositions(): Promise<ResearchItem[]> {
+    return fetch('/featured/expositions.json')
+      .then(res => res.json() as Promise<ResearchItem[]>);
+  }
   private apiUrl = `${environment.apiBaseUrl}/portal/search-result`;
 
   // CACHE
   private allItems$?: Observable<ResearchItem[]>;
   private cacheKey?: string;
   private cacheExpiresAt = 0;
-  private rcItems$?: Observable<RCmapResearchResponse[]>;
+  private rcItems$?: Observable<ResearchItem[]>;
   private rcCacheExpiresAt = 0;
   private readonly TTL_MS = 5 * 60_000; // cache for 5 minutes (tune as needed)
   // end CACHE
@@ -137,29 +142,23 @@ export class ResearchService {
     return this.allItems$;
   }
 
-  /** Fetch research items by specific IDs */
-  getResearchItemsByIds(ids: number[]): Observable<RCmapResearchResponse[]> {
+  /** Fetch featured expositions and cache as ResearchItem[] */
+  getFeaturedRCItems(): Observable<ResearchItem[]> {
     const now = Date.now();
-
-    // Serve from cache if present and fresh
     if (this.rcItems$ && now < this.rcCacheExpiresAt) {
       return this.rcItems$;
     }
-
-    // (Re)build cache by fetching all items in parallel and combining
     this.rcCacheExpiresAt = now + this.TTL_MS;
-    this.rcItems$ = forkJoin(
-      ids.map(id => this.fetchItemById(id))
-    ).pipe(
-      filter(items => items.length > 0),
-      tap(response => console.log('RC Items Response:', response)),
-      shareReplay({ bufferSize: 1, refCount: false }),
-      catchError(err => {
-        console.error('Failed to load RC research items:', err);
-        return EMPTY;
-      })
+    this.rcItems$ = new Observable<ResearchItem[]>(observer => {
+      this.getFeaturedExpositions().then(items => {
+        observer.next(items);
+        observer.complete();
+      }).catch(err => {
+        observer.error(err);
+      });
+    }).pipe(
+      shareReplay({ bufferSize: 1, refCount: false })
     );
-
     return this.rcItems$;
   }
 

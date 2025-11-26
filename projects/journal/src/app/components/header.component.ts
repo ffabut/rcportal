@@ -1,15 +1,25 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   template: `
 <header>
-  <a href="./">Home</a>
-  <a href="about">About</a>
-  <a href="for_authors">For authors</a>
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    Home
+  </a>
+
+  <a routerLink="/about" routerLinkActive="active">
+    About
+  </a>
+
+  <a routerLink="/for_authors" routerLinkActive="active">
+    For authors
+  </a>
 </header>
-`
+  `
 })
 export class HeaderComponent {
 

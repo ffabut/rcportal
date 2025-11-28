@@ -25,7 +25,7 @@ import { FooterComponent } from '../../components/footer.component'
 
 <div class="editorial">
 FFA Research in Art and Design (FFARAD) is an online open-access journal published by the Faculty of Fine Arts (FFA), Brno University of Technology (BUT), under the CC BY-NC-ND Creative Commons license.
-The journal disseminates practice-based research in art and design by FFA students through the Research Catalogue (RC), a non-commercial platform for collaboration and publishing in artistic research provided by the Society for Artistic Research. 
+The journal disseminates practice-based research in art and design by members of the FFA community through the Research Catalogue (RC), a non-commercial platform for collaboration and publishing in artistic research provided by the Society for Artistic Research. 
 Established in 2025, FFARAD publishes in English and issues ten original research expositions each year.  
 </div>
 

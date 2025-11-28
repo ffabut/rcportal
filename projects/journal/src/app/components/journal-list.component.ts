@@ -57,10 +57,6 @@ import { environment } from '../../../../../shared/environments/environment';
 
   </div>
 
-  <div class="research-reports">
-    <h2>Research Reports</h2>
-  </div>
-
 </div>
 `
 })

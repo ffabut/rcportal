@@ -29,9 +29,11 @@ import { environment } from '../../../../../shared/environments/environment';
   </div>
 
   <div class="research-expositions">
+    <!-- 
     <div class="section-title">
       <h2>Research Expositions</h2>
     </div>
+    -->
 
     <div class="research-list">
       <div *ngFor="let item of itemsFFARD" class="research-item" (click)="goToArticleDetail(item)">
